@@ -18,7 +18,11 @@ import { useHistory } from 'react-router-dom'
 
 import MenuIcon from '@material-ui/icons/Menu'
 import HomeIcon from '@material-ui/icons/Home'
+import EditIcon from '@material-ui/icons/Edit'
+
+
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
+
 import useStyles from './Header.style'
 
 
@@ -64,6 +68,14 @@ const Header = () => {
             </ListItemIcon>
             <ListItemText>Cadastro de Clientes</ListItemText>
           </ListItem>
+
+          <ListItem button onClick={() => handleMenuClick('/edit')}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText>Edit</ListItemText>
+          </ListItem>
+
         </List>
       </Drawer>
     </>
