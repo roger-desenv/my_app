@@ -32,10 +32,10 @@ createRoot.render(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
- 
+    //<React.StrictMode> // StrictMode estava bloqueando o redirecionanmento das páginas.
       <ThemeProvider theme={theme}>
         <App /> 
       </ThemeProvider>
-  
+    //</React.StrictMode>
   
 )
