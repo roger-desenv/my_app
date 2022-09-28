@@ -11,7 +11,7 @@ import Toasty from '../../components/Toasty'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    margin: theme.spacing(3)
+    margin: theme.spacing(2)
   }
 
 }))
