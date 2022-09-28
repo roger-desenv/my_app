@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core'
 
@@ -21,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const List = () => {
   const classes = useStyles()
+  const history = useHistory()
+
   const [customers, setCustomers] = useState([])
 
  
@@ -41,8 +45,13 @@ const List = () => {
     axios.delete(`https://reqres.in/api/users/${id}`)
     .then(() => {
       const newCustomersState = customers.filter(customer => customer.id !==id)
+
       setCustomers(newCustomersState)
     })
+  }
+
+  const handleEditCustomer = id => {
+    history.push(`/customers/edit/${id}`)
   }
   
   return (
@@ -58,6 +67,7 @@ const List = () => {
               avatar={item.avatar}
               className={classes.card}
               onRemoveCustomer={handleRemoveCustomer}
+              onEditCustomer={handleEditCustomer}
             />
           </Grid>
         ))

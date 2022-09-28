@@ -10,6 +10,7 @@ import TemplatePage from './templates/Page'
 
 import CustomersList from './pages/customers/List'
 import CustomersRegister from './pages/customers/Register'
+import CustomersEdit from './pages/customers/Edit'
 import Home from './pages/Home'
 //import { StrictMode } from 'react'
 
@@ -20,6 +21,11 @@ const App = () => {
       
         <TemplateDefault>
           <Switch>
+
+            <Route path="/customers/edit/:id">
+              <TemplatePage title="Editar Clientes" Component={CustomersEdit} />
+            </Route>
+
             <Route path="/customers/add">
               <TemplatePage title="Cadastro de Clientes" Component={CustomersRegister} />
             </Route>
@@ -31,6 +37,7 @@ const App = () => {
             <Route path="/">
               <TemplatePage title="Página Inicial" Component={Home} />
             </Route>
+
           </Switch>
         </TemplateDefault>
       

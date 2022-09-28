@@ -8,7 +8,7 @@ import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 
 import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete'
 import ModalConfirm from './ModalConfirm'
 
 import { makeStyles } from '@material-ui/styles'
@@ -31,6 +31,7 @@ const CustomerCard = ({
   avatar,
   className,
   onRemoveCustomer,
+  onEditCustomer,
 
 }) => {
 
@@ -52,6 +53,10 @@ const CustomerCard = ({
     handleToggleOpenModal()
   }
 
+  const handleEditCustomer = id => {
+    onEditCustomer(id)
+  }
+
   return (
     <>
       <Card className={classNames(className, classes.root)}>
@@ -65,7 +70,7 @@ const CustomerCard = ({
           subheader={email}
         />
         <CardActions disableSpacing>
-          <IconButton aria-label="editar cadastro">
+          <IconButton aria-label="editar cadastro" onClick={() => handleEditCustomer(id)}>
             <EditIcon />
           </IconButton>
           <IconButton aria-label="remover cadastro" onClick={handleRemoveCustomer}>
