@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
@@ -18,10 +18,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Edit = () => {
   const classes = useStyles()
-
   const { id } = useParams()
 
-  console.log(id)
 
   const [form, setForm] = useState({
     name: {
@@ -31,11 +29,31 @@ const Edit = () => {
     job: {
       value: '',
       error: false,
-    }
+    },
   })
 
   const [openToasty, setOpenToasty] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    axios.get(`https://reqres.in/api/users/${id}`)
+      .then(response => {
+        const { data } = response.data
+
+        setForm({
+          name: {
+            value: data.first_name,
+            error: false,
+          },
+          job: {
+            value: data.job,
+            error: false,
+          },
+        })
+      })
+  }, [])
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -83,7 +101,7 @@ const Edit = () => {
       return setForm(newFormState)
     }
 
-    axios.post('https://reqres.in/api/user', {
+    axios.put(`https://reqres.in/api/user/${id}`, {
       name: form.name.value,
       job: form.job.value,
     }).then(() => {
