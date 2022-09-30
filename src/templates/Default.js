@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Header from "../partials/Header/Header"
 
+import useAuth from '../state/auth'
+
 //.JSS = CSS em JS.
 const useStyles = makeStyles(() => ({
   container:{
@@ -14,9 +16,11 @@ const useStyles = makeStyles(() => ({
 const Default = ({ children }) => {
   const classes = useStyles()
 
+  const { user } = useAuth()
+
   return (
     <>
-      <Header />
+      <Header user={user}/>
       <Container className={classes.container}>
         { children }
       </Container>

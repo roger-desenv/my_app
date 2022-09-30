@@ -7,6 +7,8 @@ import App from './App'
 import './index.css'
 import { grey, amber } from '@material-ui/core/colors'
 
+import { AuthProvider } from './state/auth'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -33,9 +35,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     //<React.StrictMode> // StrictMode estava bloqueando o redirecionanmento das páginas.
+    
       <ThemeProvider theme={theme}>
-        <App /> 
+        <AuthProvider>
+          <App /> 
+        </AuthProvider>
       </ThemeProvider>
+
     //</React.StrictMode>
   
 )
